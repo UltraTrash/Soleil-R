@@ -6,7 +6,7 @@ from datetime import datetime, timedelta, timezone
 from pymongo import MongoClient, errors
 
 API_KEY = os.environ.get("NASA_DONKI_API") 
-MONGO_URI = os.environ.get("MONGO_URL")  
+MONGO_URI = os.environ.get("MONGO_URI")  
 FETCH_INTERVAL_SECONDS = int(os.environ.get("DONKI_FETCH_INTERVAL", "600")) 
 
 
