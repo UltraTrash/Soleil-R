@@ -1,6 +1,13 @@
 import requests
 import time
+import os
 from datetime import datetime, timedelta, timezone
+from pymongo import MongoClient, errors
+
+API_KEY = os.environ.get("NASA_DONKI_API") 
+MONGO_URI = os.environ.get("MONGO_URL")  
+FETCH_INTERVAL_SECONDS = int(os.environ.get("DONKI_FETCH_INTERVAL", "600")) 
+
 
 DONKI_FLR_URL = "https://api.nasa.gov/DONKI/FLR"
 DONKI_CME_URL = "https://api.nasa.gov/DONKI/CME"
@@ -8,7 +15,6 @@ DONKI_GST_URL = "https://api.nasa.gov/DONKI/GST"
 DONKI_IPS_URL = "https://api.nasa.gov/DONKI/IPS"
 DONKI_MPC_URL = "https://api.nasa.gov/DONKI/MPC"
 
-API_KEY = "dahNGdR4VeXrHHIC6d4b4s595lOFCADoWNIZUL16"
 
 
 def get_last_day_range():
@@ -28,6 +34,21 @@ def fetch_donki_data(url, start_date, end_date):
     response = requests.get(url, params=params, timeout=15)
     response.raise_for_status()
     return response.json()
+
+
+def get_unique_id_for_event(event):
+    for key in ("flrID", "activityID", "gstID", "eventID", "id", "mpcID"):
+        val = event.get(key)
+        if val:
+            return str(val)
+    
+
+    # if it "somehow" fails to find a valid id it will fallback to using the link as the unique id
+    # this should like, never happen tho
+    if event.get("link"):
+        return str(event["link"])
+    return f"unknown-{parse_time(event).isoformat()}"
+
 
 def print_flare(flare):
     print("SOLAR FLARE")
