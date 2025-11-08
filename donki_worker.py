@@ -6,8 +6,8 @@ from datetime import datetime, timedelta, timezone
 from pymongo import MongoClient, errors
 
 # Config from environment
-API_KEY = os.environ.get("DONKI_API_KEY")
-MONGO_URI = os.environ.get("MONGO_URI")  # must be set in Render secrets/env
+API_KEY = os.environ.get("NASA_DONKI_API")  # must be set in Render secrets/env
+MONGO_URI = os.environ.get("MONGO_URL")  # must be set in Render secrets/env
 FETCH_INTERVAL_SECONDS = int(os.environ.get("DONKI_FETCH_INTERVAL", "600"))  # default 10 minutes
 
 DONKI_FLR_URL = "https://api.nasa.gov/DONKI/FLR"
