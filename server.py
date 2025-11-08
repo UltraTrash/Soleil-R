@@ -151,7 +151,7 @@ def parse_time(event):
 def make_db_client():
     if not MONGO_URI:
         raise RuntimeError("MONGO_URI environment variable not set")
-    client = MongoClient(MONGO_URI, tlscaffile=certifi.where(), serverSelectionTimeoutMS=5000)
+    client = MongoClient(MONGO_URI, tlscafile=certifi.where(), serverSelectionTimeoutMS=5000)
     # test connection
     client.server_info()
     return client
