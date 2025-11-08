@@ -2,6 +2,7 @@
 import os
 import time
 import requests
+import certifi
 from datetime import datetime, timedelta, timezone
 from pymongo import MongoClient, errors
 
@@ -72,7 +73,7 @@ def upsert_event(collection, event):
 def make_db_client():
     if not MONGO_URI:
         raise RuntimeError("MONGO_URI environment variable not set")
-    client = MongoClient(MONGO_URI, serverSelectionTimeoutMS=5000)
+    client = MongoClient(MONGO_URI, tlsCAFfile=certifi.where(), serverSelectionTimeoutMS=5000)
     # test connection
     client.server_info()
     return client
