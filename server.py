@@ -1,6 +1,7 @@
 import requests
 import time
 import os
+import certifi
 from datetime import datetime, timedelta, timezone
 from pymongo import MongoClient, errors
 
@@ -134,7 +135,8 @@ def update_events(start_date, end_date):
     events.sort(key=parse_time, reverse=True)
     return events
 
-#this function just serves to get around the "start time" attributes having different names
+
+# this function just serves to get around the "start time" attributes having different names
 def parse_time(event):
     time_str = event.get("beginTime") or event.get("startTime") or event.get("eventTime")
     if not time_str:
@@ -146,7 +148,16 @@ def parse_time(event):
 
 
 
+def make_db_client():
+    if not MONGO_URI:
+        raise RuntimeError("MONGO_URI environment variable not set")
+    client = MongoClient(MONGO_URI, tlsCAFfile=certifi.where(), serverSelectionTimeoutMS=5000)
+    # test connection
+    client.server_info()
+    return client
+
 def main():
+    client = make_db_client()
     while True:
         start_date, end_date = get_last_day_range()
         print(f"Fetching DONKI data from {start_date} to {end_date}...\n")
