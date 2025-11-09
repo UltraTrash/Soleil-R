@@ -7,8 +7,6 @@ html, body, .App {
 
 .space-weather-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2 columns */
-  grid-template-rows: repeat(2, auto);   /* 2 rows */
   gap: 20px; 
   justify-items: center; 
   align-items: center;   
