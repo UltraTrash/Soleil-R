@@ -13,6 +13,15 @@
   }
 }
 
+/* Make sure the image fills width properly */
+.App-starfield {
+  width: 100vw;        /* fill full width of viewport */
+  height: auto;        /* preserve aspect ratio */
+  display: block;      /* remove default inline gap */
+  object-fit: cover;   /* make it look nice if it's large */
+}
+
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
