@@ -14,7 +14,7 @@ html, body, .App {
   align-items: center;   
 }
 
-.space-weather-grid div {
+.space-weather-grid{
   width: 100%;          /* fills grid column */
   max-width: 600px;     /* optional max width */
   min-width: 250px;     /* ensures readability on small screens */
