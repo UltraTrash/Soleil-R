@@ -1,45 +1,8 @@
-/* import starfield from './starfield1.jpg';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={starfield} className="App-starfield" alt="starfield" />
-        <h1>Welcome to Soleil!</h1>
-        <h2>Soleil is the web application you need to monitor outer space's various weather phenomena</h2>
-
-        <div className="space-weather-grid">
-
-        <div class="phenomenon">
-          <h3>Coronal Mass Ejection</h3>
-          <div className="coronal-mass-ejection"></div>
-          <img class="image1" src="images/coronal_mass_ejection_image.png" alt="cme_image"></img>
-        </div>
-
-        <div className="solar-flares"></div>
-
-        <div className="geomagnetic-storms"></div>
-
-        <div className="interplanetary-shocks"></div>
-        </div>
-
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-        </a>
-      </header>
-    </div>
-  );
-}
-export default App; */
-
 import React, { useState, useEffect } from "react";
 import starfield from './starfield1.jpg';
 import './App.css';
+
+const API_BASE_URL = process.env.REACT_APP_API_URL || "http://127.0.0.1:5000";
 
 function App() {
   const [cme, setCme] = useState(null);
@@ -50,7 +13,7 @@ function App() {
   // Helper to fetch an event type
   const fetchEvent = async (endpoint, setState) => {
     try {
-      const res = await fetch(`http://127.0.0.1:5000/api/events/${endpoint}`);
+      const res = await fetch(`${API_BASE_URL}/api/events/${endpoint}`);
       if (!res.ok) throw new Error("Network response was not ok");
       const data = await res.json();
       setState(data);
