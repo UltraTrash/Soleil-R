@@ -15,13 +15,16 @@ html, body, .App {
 }
 
 .space-weather-grid div {
-  height: 180px;
-  width: 700px;
+  width: 100%;          /* fills grid column */
+  max-width: 600px;     /* optional max width */
+  min-width: 250px;     /* ensures readability on small screens */
+  height: auto;         /* adapt height to content */
   padding: 10px;
   border-radius: 8px;
   background-color: rgba(0,0,0,0.5);
   color: white;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -81,22 +84,29 @@ h3 {
 .App-header {
   position: relative;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;   /* allow height to grow */
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start; /* ✅ moves text to top */
-  padding-top: 60px; /* spacing from the top */
+  justify-content: flex-start;
+  padding: 60px 20px 40px 20px; /* top + horizontal + bottom padding */
   color: white;
-  background-color: transparent; /* ✅ removes gray box */
+  background-color: transparent;
   font-size: calc(10px + 2vmin);
-  text-shadow: 0 0 8px rgba(0, 0, 0, 0.5); /* subtle glow for readability */
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
 }
 
 
 .App-link {
+  margin-top: 20px;        /* space from the grid */
+  display: inline-block;
   color: #61dafb;
   text-decoration: none;
+  font-size: 0.9rem;       /* shrink font slightly */
+  word-break: break-word;  /* prevent overflow on small screens */
+  max-width: 90%;          /* keep it within the container */
+  text-align: center;      /* center if it wraps */
 }
 
 

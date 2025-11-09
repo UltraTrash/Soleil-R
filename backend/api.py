@@ -5,8 +5,10 @@ import dotenv
 from flask import Flask, jsonify, render_template, request
 from pymongo import MongoClient
 from bson import ObjectId
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 MONGO_URI = os.environ.get("MONGO_URI") if os.environ.get("MONGO_URI") else dotenv.get_key('../.env', 'MONGO_URI')
 def make_db_client():
@@ -28,13 +30,32 @@ collection = db["events"]
 
 def serialize_doc(doc):
     if isinstance(doc, dict):
-        return {k: serialize_doc(v) for k, v in doc.items()}
+        doc_copy = {}
+        for k, v in doc.items():
+            if isinstance(v, ObjectId):
+                doc_copy[k] = str(v)
+            elif isinstance(v, dict) or isinstance(v, list):
+                doc_copy[k] = serialize_doc(v)
+            else:
+                doc_copy[k] = v
+        return normalize_event(doc_copy)
     elif isinstance(doc, list):
         return [serialize_doc(v) for v in doc]
-    elif isinstance(doc, ObjectId):
-        return str(doc)
     else:
         return doc
+    
+def normalize_event(event):
+    normalized = {
+        "_id": event.get("_id", ""),
+        "eventType": event.get("eventType", ""),
+        "eventTime": event.get("beginTime") or event.get("startTime") or event.get("eventTime") or "",
+        "sourceLocation": event.get("sourceLocation", ""),
+        "classType": event.get("classType", ""),
+        "note": event.get("note", ""),
+        "location": event.get("location", ""),
+        "link": event.get("link", "")
+    }
+    return normalized
 
 @app.get("/api/events/paginate5")
 def get_events():
