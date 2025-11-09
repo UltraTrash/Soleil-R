@@ -55,6 +55,10 @@ function App() {
                 <h3>Solar Flare (FLR)</h3>
                 <p>Time: {flare.eventTime}</p>
                 <p>Class: {flare.classType || "N/A"}</p>
+                <p>Beginning type: {flare.beginTime || "N/A"}</p>
+                <p>Peak Time: {flare.peakTime || "N/A"}</p>
+                <p>Source Location: {flare.sourceLocation || "N/A"}</p>
+                <p>Active Region Number: {flare.activeRegionNum || "N/A"}</p>
               </>
             ) : <p>Loading...</p>}
           </div>
