@@ -14,22 +14,6 @@ html, body, .App {
   align-items: center;   
 }
 
-.space-weather-grid{
-  width: 100%;          /* fills grid column */
-  max-width: 600px;     /* optional max width */
-  min-width: 250px;     /* ensures readability on small screens */
-  height: auto;         /* adapt height to content */
-  padding: 10px;
-  border-radius: 8px;
-  background-color: rgba(0,0,0,0.5);
-  color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  font-weight: bold;
-}
 
 
 h3 {
@@ -44,6 +28,8 @@ h3 {
   border: 2px solid #61dafb;
   border-radius: 8px;
   background-color: rgba(0, 0, 0, 0.5);
+  height: 200px;
+  width: 300px;
 }
 
 .solar-flares{
@@ -52,6 +38,8 @@ h3 {
   border: 2px solid #ff4500;
   border-radius: 8px;
   background-color: rgba(0, 0, 0, 0.5);
+  height: 200px;
+  width: 300px;
 }
 
 .geomagnetic-storms{
@@ -60,6 +48,8 @@ h3 {
   border: 2px solid #32cd32;
   border-radius: 8px;
   background-color: rgba(0, 0, 0, 0.5);
+  height: 200px;
+  width: 300px;
 }
 
 .interplanetary-shocks{
