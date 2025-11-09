@@ -32,6 +32,12 @@ html, body, .App {
 }
 
 
+h3 {
+  color: white;
+  margin-bottom: 10px; /* space between heading and box */
+  text-align: center;
+}
+
 .coronal-mass-ejection{
   margin: 20px;
   padding: 10px;
