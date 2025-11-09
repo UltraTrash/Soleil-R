@@ -3,7 +3,7 @@ import starfield from './starfield1.jpg';
 import './App.css';
 
 // so that we can switch between local and deployed backend easily
-const API_BASE_URL = process.env.REACT_APP_API_URL || "https://soleiljs.onrender.com";
+const API_BASE_URL = process.env.REACT_APP_API_URL || "https://soleil.onrender.com";
 
 function App() {
   const [cme, setCme] = useState(null);
