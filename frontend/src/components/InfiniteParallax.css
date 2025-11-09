@@ -1,0 +1,47 @@
+.parallax-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.parallax-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 200%; /* double height for smooth looping */
+  background-repeat: repeat-y;
+  background-size: cover;
+  animation: scroll infinite linear;
+}
+
+.background {
+  background-image: url('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=1350&q=80'); /* your background image */
+  z-index: 1;
+  animation-duration: 60s; /* slower */
+}
+
+.foreground {
+  background-image: url('https://images.unsplash.com/photo-1580657015700-5f77e15931b3?auto=format&fit=crop&w=1350&q=80'); /* your foreground image */
+  z-index: 2;
+  animation-duration: 30s; /* faster */
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+.content {
+  position: relative;
+  z-index: 3;
+  color: white;
+  text-align: center;
+  margin-top: 40vh;
+  font-family: sans-serif;
+}

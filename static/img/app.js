@@ -1,6 +1,12 @@
-let http = require('http');
+import React from "react";
+import InfiniteParallax from "./components/InfiniteParallax";
 
-http.createServer(function (req, res) {
-  res.writeHead(200, {'Content-Type': 'text/plain'});
-  res.end('Hello World!');
-}).listen(8080);
+function App() {
+  return (
+    <div>
+      <InfiniteParallax />
+    </div>
+  );
+}
+
+export default App; 
