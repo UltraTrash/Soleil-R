@@ -13,6 +13,6 @@ making this web page as awesome as possible for all of our space
 enthusiast!
 
 Credentials:
-George Dimas
-Ian Cohn
+George Dimas, 
+Ian Cohn, 
 Dylan Joos
